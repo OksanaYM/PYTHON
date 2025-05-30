@@ -16,25 +16,25 @@ class Rectangle:
         self.y = y
         self.area = self.x * self.y
 
-    def add_area(self, other: Self):
+    def __add__(self, other: Self):
         return self.area + other.area
 
-    def difference_area(self, other: Self):
+    def __sub__(self, other: Self):
         return self.area - other.area
 
-    def equality_area(self, other: Self):
+    def __eq__(self, other: Self):
         return self.area == other.area
 
-    def no_equality_area(self, other: Self):
+    def __ne__(self, other: Self):
         return self.area != other.area
 
-    def less_then_other_area(self, other: Self):
+    def __lt__(self, other: Self):
         return self.area < other.area
 
-    def greater_then_other_area(self, other: Self):
+    def __gt__(self, other: Self):
         return self.area > other.area
 
-    def len(self):
+    def __len__(self):
         return self.x + self.y
 
 rectangle1 = Rectangle(2, 3)
@@ -42,15 +42,15 @@ rectangle2 = Rectangle(3, 4)
 
 print(rectangle1.area)
 print(rectangle2.area)
-print(rectangle1.add_area(rectangle2))
-print(rectangle1.difference_area(rectangle2))
-print(rectangle2.difference_area(rectangle1))
-print(rectangle1.equality_area(rectangle2))
-print(rectangle1.no_equality_area(rectangle2))
-print(rectangle1.less_then_other_area(rectangle2))
-print(rectangle1.greater_then_other_area(rectangle2))
-print(rectangle1.len())
-print(rectangle2.len())
+print(rectangle1.__add__(rectangle2))
+print(rectangle1.__sub__(rectangle2))
+print(rectangle2.__sub__(rectangle1))
+print(rectangle1.__eq__(rectangle2))
+print(rectangle1.__ne__(rectangle2))
+print(rectangle1.__lt__(rectangle2))
+print(rectangle1.__gt__(rectangle2))
+print(rectangle1.__len__())
+print(rectangle2.__len__())
 
 
 # ###############################################################################
@@ -161,7 +161,7 @@ class Main:
     __printable_list: list[Printable] = []
     @classmethod
     def add__(cls, item):
-        if isinstance (item, Book or Magazine):
+        if isinstance (item, (Book, Magazine)):
             cls.__printable_list.append(item)
 
     @classmethod
